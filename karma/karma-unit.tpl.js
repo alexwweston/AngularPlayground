@@ -13,16 +13,29 @@ module.exports = function ( karma ) {
       <% }); %>
       'src/**/*.js',
     ],
+
     exclude: [
       'src/assets/**/*.js'
     ],
-    frameworks: ['mocha', 'chai'],
-    plugins: [ 'karma-mocha', 'karma-chai', 'karma-sinon', 'karma-phantomjs-launcher' ],
+
+    frameworks: [
+      'mocha',
+      'chai',
+      'sinon'
+    ],
+
+    plugins: [
+      'karma-mocha',
+      'karma-chai',
+      'karma-sinon',
+      'karma-phantomjs-launcher',
+      'karma-spec-reporter'
+    ],
 
     /**
      * How to report, by default.
      */
-    reporters: ['dots'],
+    reporters: ['spec'],
 
     /**
      * On which port should the browser connect, on which port is the test runner
@@ -30,10 +43,13 @@ module.exports = function ( karma ) {
      */
     port: 9018,
     runnerPort: 9100,
+
     urlRoot: '/',
 
     colors: true,
+
     autoWatch: false,
+
     singleRun: false,
 
   /**
