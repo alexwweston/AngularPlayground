@@ -1,6 +1,12 @@
 describe('common', function() {
   beforeEach(module('common'));
 
+  describe('Math service', function() {
+    it('should be Math', inject(function(Math) {
+      expect(Math).to.equal(window.Math);
+    }));
+  });
+
   describe('px filter', function() {
     var pxFilter;
 

@@ -1,6 +1,7 @@
 angular.module('index', [
   'ui.router',
-  'common'
+  'common',
+  'rectangle'
 ])
   .config(function($stateProvider) {
     $stateProvider.state('index', {
@@ -16,12 +17,6 @@ angular.module('index', [
       }
     });
   })
-  .controller('IndexController', function($scope) {
-
-  })
-  .value('rectangleFactory', function() {
-
-  })
-  .value('squareFactory', function() {
-
+  .controller('IndexController', function($scope, rectangles) {
+    $scope.rectangles = rectangles.list();
   });

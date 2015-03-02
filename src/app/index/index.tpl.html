@@ -1,15 +1,6 @@
 <section>
-  Rectangle:
-  <input type="text" ng-model="rectangle.width">
-  <input type="text" ng-model="rectangle.height">
-  <div style="width: {{rectangle.width | px}}; height: {{rectangle.height | px}};" class="rectangle">
-    Area: {{rectangle.area() | px}}
-  </div>
+  <div rectangle="rectangle" ng-repeat="rectangle in rectangles"></div>
 </section>
 <section>
-  Square:
-  <input type="text" ng-model="square.size">
-  <div style="width: {{square.size | px}}; height: {{square.size | px}};" class="square">
-    Area: {{square.area() | px}}
-  </div>
+  <button ui-sref="addRectangle">Add rectangle</button>
 </section>
