@@ -15,4 +15,47 @@ angular.module('rectangle', [
         color: '#' + _.padLeft(colorValue, 6, '0')
       }, properties));
     };
+  })
+  .factory('rectangles', function(rectangleFactory){
+
+    return {
+      rectangleList: [],//@todo make "private"
+      add: function add(width, height){
+        var rectangle = rectangleFactory();
+        rectangle.width = width;
+        rectangle.height = height;
+        console.log();
+        this.rectangleList.push(rectangle);
+     },
+      list: function list(){
+        return this.rectangleList;
+      }
+  };
+  })
+  .directive('rectangle', function(){
+    return {
+      template: "<div class='rectangle' style = 'height: {{rectangle.height}}px; width: {{rectangle.width}}px; background-color: {{rectangle.color}}px'>" +
+        "{{rectangle.area()}}px</div>"
+    };
+  }).config(function($stateProvider) {
+    $stateProvider.state('addRectangle', {
+      url: '/addRectangle',
+      views: {
+        main: {
+          controller: 'addRectangleController',
+          templateUrl: 'rectangle/rectangle.tpl.html'
+        }
+      },
+      data: {
+        pageTitle: 'Add Rectangle'
+      }
+    });
+  })
+  .controller('addRectangleController', function($scope, rectangles, $state){
+    $scope.width = 100;
+    $scope.height = 50;
+    $scope.saveRectangle = function (width, height){
+      rectangles.add(width, height);
+      $state.go('index');
+    };
   });
