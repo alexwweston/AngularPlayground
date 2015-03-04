@@ -17,20 +17,19 @@ angular.module('rectangle', [
     };
   })
   .factory('rectangles', function(rectangleFactory){
-
-    return {
-      rectangleList: [],//@todo make "private"
-      add: function add(width, height){
-        var rectangle = rectangleFactory();
+    function Rectangles(){
+      this.rectangleList= [];
+    }
+    Rectangles.prototype.add = function add(width, height){
+      var rectangle = rectangleFactory();
         rectangle.width = width;
         rectangle.height = height;
-        console.log();
         this.rectangleList.push(rectangle);
-     },
-      list: function list(){
+     };
+     Rectangles.prototype.list = function list(){
         return this.rectangleList;
-      }
-  };
+     };
+    return new Rectangles();
   })
   .directive('rectangle', function(){
     return {
